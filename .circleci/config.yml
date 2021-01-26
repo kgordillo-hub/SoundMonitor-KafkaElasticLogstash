@@ -4,14 +4,30 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.12.2
   aws-ecs: circleci/aws-ecs@01.3.0
 
+jobs:
+  infrastructure-providing-and-deploy:
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: Terraform init
+          command: |
+            cd terraform &&
+            terraform init
+      - run:
+          name: Terraform provide and deploy
+          command: |
+            cd terraform &&
+            terraform apply -auto-approve -var="ecr_image_tag=${CIRCLE_SHA1}"
+
 workflows:
   main:
     jobs:
       - aws-ecr/build-and-push-image:
-          filters:
-            branches:
-              only:
-                - master
-                - qa
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           tag: "${CIRCLE_SHA1}"
+      - infrastructure-providing-and-deploy:
+          context: TerraformContext
+          requires: 
+            - aws-ecr/build-and-push-image
