@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@6.12.2
+  aws-ecs: circleci/aws-ecs@01.3.0
+
+workflows:
+  main:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          filters:
+            branches:
+              only:
+                - master
+                - qa
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          tag: "${CIRCLE_SHA1}"
