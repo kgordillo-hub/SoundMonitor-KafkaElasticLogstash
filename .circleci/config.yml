@@ -28,6 +28,7 @@ workflows:
           context: AWSContext
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           tag: "${CIRCLE_SHA1}"
+          create-repo: true
       - infrastructure-providing-and-deploy:
           context: 
             - AWSContext
