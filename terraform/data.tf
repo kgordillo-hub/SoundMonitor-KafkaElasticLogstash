@@ -10,7 +10,7 @@ variable "cluster-arn" {
   description = "ARN of cluster for monitor events"
 }
 
-variable "sound-monitor-subnet" {
+variable "soundmonitor_main_subnet" {
     description = "subnet of SoundMonitorVPC"
 }
 
