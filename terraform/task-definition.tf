@@ -1,3 +1,7 @@
+data "aws_elasticsearch_domain" "domain" {
+  domain_name = "soundmonitor-elastic"
+}
+
 resource "aws_ecs_task_definition" "main" {
   family = var.family-name
   container_definitions = <<EOF
@@ -19,7 +23,7 @@ resource "aws_ecs_task_definition" "main" {
           },
           {
               "name": "AWS_ELASTIC_ENDPOINT",
-              "value": "${var.aws_es_endpoint}"
+              "value": "${data.aws_elasticsearch_domain.domain.endpoint}"
           }
       ],
       "mountPoints": [],
