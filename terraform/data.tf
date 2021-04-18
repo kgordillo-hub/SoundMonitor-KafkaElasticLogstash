@@ -10,7 +10,7 @@ variable "cluster-arn" {
   description = "ARN of cluster for monitor events"
 }
 
-variable "soundmonitor_main_subnet" {
+variable "soundmonitor_mainsubnet" {
     description = "subnet of SoundMonitorVPC"
 }
 
@@ -45,4 +45,12 @@ variable "aws_es_endpoint" {
 
 variable "ecr_image_tag" {
   description = "Inferencer latest image tag"
+}
+
+variable "kafka_process_result_event" {
+  description = "Kafka event of process result"
+}
+
+variable "kafka_bootstrap_server_one" {
+  description =  "Endpoint of kafka server one"
 }
