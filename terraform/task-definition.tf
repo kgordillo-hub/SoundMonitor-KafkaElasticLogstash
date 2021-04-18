@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "main" {
               "value": "${data.aws_elasticsearch_domain.domain.endpoint}"
           },
           {
-              "name": "KAFKA_BOOTSTRAP_SERVER_ONE,
+              "name": "KAFKA_BOOTSTRAP_SERVER_ONE",
               "value": "${var.kafka_bootstrap_server_one}"
           },
           {
