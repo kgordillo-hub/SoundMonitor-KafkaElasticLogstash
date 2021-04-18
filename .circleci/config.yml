@@ -33,5 +33,6 @@ workflows:
           context: 
             - TerraformContext
             - SoundMonitor-KafkaContext
+            - SoundMonitor-IACCommonContext
           requires: 
             - aws-ecr/build-and-push-image

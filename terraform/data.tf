@@ -6,10 +6,6 @@ variable "cluster-name" {
   default = "monitor-inferencers-cluster"
 }
 
-variable "cluster-arn" {
-  description = "ARN of cluster for monitor events"
-}
-
 variable "soundmonitor_mainsubnet" {
     description = "subnet of SoundMonitorVPC"
 }

@@ -1,6 +1,10 @@
+data "aws_ecs_cluster" "inferencer" {
+  cluster_name = var.cluster-name
+}
+
 resource "aws_ecs_service" "main" {
   name            = var.service-name
-  cluster         = var.cluster-arn
+  cluster         = data.aws_ecs_cluster.inferencer.arn
   task_definition = aws_ecs_task_definition.main.arn
   launch_type     = "FARGATE"
   desired_count   = 1
