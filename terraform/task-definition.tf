@@ -1,5 +1,5 @@
 data "aws_elasticsearch_domain" "domain" {
-  domain_name = "soundmonitor-elastic"
+  domain_name = "soundmonitor-elasticsearch"
 }
 
 resource "aws_ecs_task_definition" "main" {
