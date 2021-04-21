@@ -35,10 +35,6 @@ variable "aws_es_key_secret" {
   description = "AWS secret for elastic"
 }
 
-variable "aws_es_endpoint" {
-  description = "Elastic endpoint"
-}
-
 variable "ecr_image_tag" {
   description = "Inferencer latest image tag"
 }
