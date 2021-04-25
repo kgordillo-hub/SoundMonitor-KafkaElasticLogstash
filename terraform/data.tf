@@ -46,3 +46,11 @@ variable "kafka_process_result_event" {
 variable "kafka_bootstrap_server_one" {
   description =  "Endpoint of kafka server one"
 }
+
+variable "user" {
+  description =  ""
+}
+
+variable "password" {
+  description =  ""
+}

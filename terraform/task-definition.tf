@@ -32,6 +32,14 @@ resource "aws_ecs_task_definition" "main" {
           {
               "name": "KAFKA_PROCESS_RESULT_EVENT",
               "value": "${var.kafka_process_result_event}"
+          },
+          {
+              "name": "USER",
+              "value": "${var.user}"
+          },
+          {
+              "name": "PASSWORD",
+              "value": "${var.password}"
           }
       ],
       "mountPoints": [],
