@@ -29,6 +29,11 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           tag: "${CIRCLE_SHA1}"
           create-repo: true
+          filters:
+            branches:
+              only:
+                - master
+                - qa
       - infrastructure-providing-and-deploy:
           context: 
             - TerraformContext
