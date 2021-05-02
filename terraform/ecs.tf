@@ -1,11 +1,10 @@
-resource "aws_ecs_cluster" "main" {
-  name = var.cluster-name
+data "aws_ecs_cluster" "inferencer" {
+  cluster_name = var.cluster-name
 }
-
 
 resource "aws_ecs_service" "main" {
   name            = var.service-name
-  cluster         = aws_ecs_cluster.main.id
+  cluster         = data.aws_ecs_cluster.inferencer.arn
   task_definition = aws_ecs_task_definition.main.arn
   launch_type     = "FARGATE"
   desired_count   = 1
@@ -16,19 +15,8 @@ resource "aws_ecs_service" "main" {
   }
 
   network_configuration {
-    subnets          = [aws_default_subnet.default_subnet_a.id, aws_default_subnet.default_subnet_b.id]
+    subnets          = [var.soundmonitor_mainsubnet]
     assign_public_ip = true
   }
 
-}
-
-resource "aws_default_vpc" "default_vpc" {
-}
-
-resource "aws_default_subnet" "default_subnet_a" {
-  availability_zone = "${var.aws_region}a"
-}
-
-resource "aws_default_subnet" "default_subnet_b" {
-  availability_zone = "${var.aws_region}b"
 }

@@ -1,3 +1,7 @@
+data "aws_elasticsearch_domain" "domain" {
+  domain_name = "soundmonitor-elasticsearch"
+}
+
 resource "aws_ecs_task_definition" "main" {
   family = var.family-name
   container_definitions = <<EOF
@@ -19,7 +23,23 @@ resource "aws_ecs_task_definition" "main" {
           },
           {
               "name": "AWS_ELASTIC_ENDPOINT",
-              "value": "${var.aws_es_endpoint}"
+              "value": "${data.aws_elasticsearch_domain.domain.endpoint}"
+          },
+          {
+              "name": "KAFKA_BOOTSTRAP_SERVER_ONE",
+              "value": "${var.kafka_bootstrap_server_one}"
+          },
+          {
+              "name": "KAFKA_PROCESS_RESULT_EVENT",
+              "value": "${var.kafka_process_result_event}"
+          },
+          {
+              "name": "USER",
+              "value": "${var.user}"
+          },
+          {
+              "name": "PASSWORD",
+              "value": "${var.password}"
           }
       ],
       "mountPoints": [],

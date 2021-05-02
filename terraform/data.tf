@@ -6,6 +6,10 @@ variable "cluster-name" {
   default = "monitor-inferencers-cluster"
 }
 
+variable "soundmonitor_mainsubnet" {
+    description = "subnet of SoundMonitorVPC"
+}
+
 variable "service-name" {
   default = "monitor-logstash-service"
 }
@@ -31,10 +35,22 @@ variable "aws_es_key_secret" {
   description = "AWS secret for elastic"
 }
 
-variable "aws_es_endpoint" {
-  description = "Elastic endpoint"
-}
-
 variable "ecr_image_tag" {
   description = "Inferencer latest image tag"
+}
+
+variable "kafka_process_result_event" {
+  description = "Kafka event of process result"
+}
+
+variable "kafka_bootstrap_server_one" {
+  description =  "Endpoint of kafka server one"
+}
+
+variable "user" {
+  description =  ""
+}
+
+variable "password" {
+  description =  ""
 }
