@@ -14,7 +14,6 @@ module "logstash" {
   kafka_bootstrap_server_one= var.kafka_bootstrap_server_one
 
   ecr_image_tag= var.ecr_image_tag
-  ecr_image_repo= var.ecr_image_repo
 
   device_selector= "cpu"
 }

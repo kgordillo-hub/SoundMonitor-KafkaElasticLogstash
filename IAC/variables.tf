@@ -23,3 +23,7 @@ variable "mapper_url" {
   default = "url of mapper"
 }
 
+variable "ecr_image_tag" {
+  description = "Inferencer latest image tag"
+}
+
