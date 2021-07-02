@@ -1,4 +1,4 @@
-module "noise_level" {
+module "logstash" {
   source = "git::https://github.com/AlienX456/SoundMonitor-IAC-Infrastructure-Common.git//ecs_logstash_elastic_services"
 
   service-name= "${var.service_name}-service"
