@@ -16,4 +16,7 @@ module "logstash" {
   ecr_image_tag= var.ecr_image_tag
 
   device_selector= "cpu"
+
+  user = var.user
+  password = var.password
 }
