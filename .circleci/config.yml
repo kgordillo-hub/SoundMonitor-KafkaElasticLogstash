@@ -13,12 +13,12 @@ jobs:
       - run:
           name: Terraform init
           command: |
-            cd terraform &&
+            cd IAC &&
             terraform init
       - run:
           name: Terraform provide and deploy
           command: |
-            cd terraform &&
+            cd IAC &&
             terraform apply -auto-approve -var="ecr_image_tag=${CIRCLE_SHA1}"
 
 workflows:
