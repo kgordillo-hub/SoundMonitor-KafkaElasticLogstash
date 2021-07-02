@@ -29,6 +29,7 @@ workflows:
           repo: "${TF_VAR_service_name}"
           tag: "${CIRCLE_SHA1}"
           create-repo: true
+          account-url: "${TF_VAR_account_id}.dkr.ecr.${AWS_REGION}.amazonaws.com"
           filters:
             branches:
               only:
