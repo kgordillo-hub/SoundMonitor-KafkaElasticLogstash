@@ -25,8 +25,8 @@ workflows:
   main:
     jobs:
       - aws-ecr/build-and-push-image:
-          context: AWSContext
-          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          context: TerraformContext
+          repo: "${TF_VAR_service_name}"
           tag: "${CIRCLE_SHA1}"
           create-repo: true
           filters:
@@ -34,10 +34,9 @@ workflows:
               only:
                 - master
                 - qa
+                - feature/NewTypeDeploy
       - infrastructure-providing-and-deploy:
           context: 
             - TerraformContext
-            - SoundMonitor-KafkaContext
-            - SoundMonitor-IACCommonContext
           requires: 
             - aws-ecr/build-and-push-image
