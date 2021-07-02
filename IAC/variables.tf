@@ -11,10 +11,6 @@ variable "service_name" {
   description = "service name"
 }
 
-variable "aws_account_id" {
-  description = "AWS account id to deploy"
-}
-
 variable "kafka_bootstrap_server_one" {
   description =  "Endpoint of kafka server one"
 }
