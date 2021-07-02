@@ -12,6 +12,7 @@ module "logstash" {
 
   kafka_bootstrap_server_one= var.kafka_bootstrap_server_one
 
+  aws_ecr_account_url = var.aws_ecr_account_url
   ecr_image_tag= var.ecr_image_tag
 
   device_selector= "cpu"

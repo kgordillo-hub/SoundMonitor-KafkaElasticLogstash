@@ -15,11 +15,19 @@ variable "kafka_bootstrap_server_one" {
   description =  "Endpoint of kafka server one"
 }
 
-variable "mapper_url" {
-  default = "url of mapper"
+variable "aws_ecr_account_url" {
+  description = "ECR url"
 }
 
 variable "ecr_image_tag" {
   description = "Inferencer latest image tag"
+}
+
+variable "user" {
+  description =  ""
+}
+
+variable "password" {
+  description =  ""
 }
 
