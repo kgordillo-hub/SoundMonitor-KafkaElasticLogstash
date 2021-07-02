@@ -2,7 +2,7 @@ module "logstash" {
   source = "git::https://github.com/AlienX456/SoundMonitor-IAC-Infrastructure-Common.git//ecs_logstash_elastic_services"
 
   service-name= "${var.service_name}-service"
-  family-name = var.service_name
+  family_name = var.service_name
   cpu= "256"
   memory= "512"
   number_of_tasks="1"
