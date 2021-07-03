@@ -19,28 +19,28 @@ jobs:
           name: Terraform provide and deploy
           command: |
             cd IAC &&
-            terraform apply -auto-approve -var="ecr_image_tag=6b0ced9611bbc3a0e38f0b1a745d566304956658"
+            terraform apply -auto-approve -var="ecr_image_tag=${CIRCLE_SHA1}"
 
 workflows:
   main:
     jobs:
-#      - aws-ecr/build-and-push-image:
-#          context: TerraformContext
-#          repo: "${TF_VAR_service_name}"
-#          tag: "${CIRCLE_SHA1}"
-#          create-repo: true
-#          aws-access-key-id: TF_VAR_aws_provider_key
-#          aws-secret-access-key: TF_VAR_aws_provider_secret
-#          account-url: TF_VAR_aws_ecr_account_url
-#          filters:
-#            branches:
-#              only:
-#                - master
-#                - qa
-#                - feature/NewTypeDeploy
+      - aws-ecr/build-and-push-image:
+          context: TerraformContext
+          repo: "${TF_VAR_service_name}"
+          tag: "${CIRCLE_SHA1}"
+          create-repo: true
+          aws-access-key-id: TF_VAR_aws_provider_key
+          aws-secret-access-key: TF_VAR_aws_provider_secret
+          account-url: TF_VAR_aws_ecr_account_url
+          filters:
+            branches:
+              only:
+                - master
+                - qa
+                - feature/NewTypeDeploy
       - infrastructure-providing-and-deploy:
           context: 
             - TerraformContext
             - ElasticContext
-#          requires:
-#            - aws-ecr/build-and-push-image
+          requires:
+            - aws-ecr/build-and-push-image
