@@ -13,22 +13,25 @@ jobs:
       - run:
           name: Terraform init
           command: |
-            cd terraform &&
+            cd IAC &&
             terraform init
       - run:
           name: Terraform provide and deploy
           command: |
-            cd terraform &&
+            cd IAC &&
             terraform apply -auto-approve -var="ecr_image_tag=${CIRCLE_SHA1}"
 
 workflows:
   main:
     jobs:
       - aws-ecr/build-and-push-image:
-          context: AWSContext
-          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          context: TerraformContext
+          repo: "${TF_VAR_service_name}"
           tag: "${CIRCLE_SHA1}"
           create-repo: true
+          aws-access-key-id: TF_VAR_aws_provider_key
+          aws-secret-access-key: TF_VAR_aws_provider_secret
+          account-url: TF_VAR_aws_ecr_account_url
           filters:
             branches:
               only:
@@ -37,7 +40,6 @@ workflows:
       - infrastructure-providing-and-deploy:
           context: 
             - TerraformContext
-            - SoundMonitor-KafkaContext
-            - SoundMonitor-IACCommonContext
-          requires: 
+            - ElasticContext
+          requires:
             - aws-ecr/build-and-push-image
