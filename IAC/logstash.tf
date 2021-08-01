@@ -1,5 +1,5 @@
 module "logstash" {
-  source = "git::https://github.com/AlienX456/SoundMonitor-IAC-Infrastructure-Common.git//ecs_logstash_elastic_services?ref=2.0.0"
+  source = "git::https://github.com/AlienX456/SoundMonitor-IAC-Infrastructure-Common.git//ecs_logstash_elastic_services?ref=2.2.0"
 
   service-name= "${var.service_name}-service"
   family_name = var.service_name
