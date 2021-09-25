@@ -19,7 +19,8 @@ jobs:
           name: Terraform provide and deploy
           command: |
             cd IAC &&
-            terraform apply -auto-approve -var="ecr_image_tag=${CIRCLE_SHA1}"
+            PROJECT_REPONAME=$(echo $CIRCLE_PROJECT_REPONAME | tr '[:upper:]' '[:lower:]') &&
+            terraform apply -auto-approve -var="ecr_image_tag=${CIRCLE_SHA1}" -var="repository_name=${PROJECT_REPONAME}"
 
 workflows:
   main:
