@@ -1,5 +1,5 @@
 module "logstash" {
-  source = "git::https://github.com/AlienX456/SoundMonitor-IAC-Infrastructure-Common.git//use-cases/ecs_logstash_elastic_services?ref=3.0.11-rc"
+  source = "git::https://github.com/AlienX456/SoundMonitor-IAC-Infrastructure-Common.git//use-cases/ecs_logstash_elastic_services?ref=3.0.12-rc"
 
   /*USER VARS*/
   cpu= "256"
